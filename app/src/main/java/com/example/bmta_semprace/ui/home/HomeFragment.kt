@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.bmta_semprace.databinding.FragmentHomeBinding
@@ -28,9 +29,17 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.btnStop.setOnClickListener        {
+            AlertDialog.Builder(context!!)
+                .setCancelable(true)
+                .setMessage("You really smoked again?")
+                .setNegativeButton("No, miss clicked") { _,_ ->
+
+                }
+                .setPositiveButton("Yes") { _, _ ->
+
+                }
+                .show()
         }
         return root
     }

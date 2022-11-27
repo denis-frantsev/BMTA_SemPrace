@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="daysCount">0</string>
+    <string name="minutesCount">0</string>
+    <string name="hours">Hours</string>
+    <string name="minutes">Minutes</string>
+    <string name="snapped">Snapped</string>
+</resources>
