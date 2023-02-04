@@ -11,13 +11,18 @@ class AppViewModel(jsonString: String) {
     init {
         var objJson = parseJsonObject(jsonString)
         if (objJson != null) {
+
             smoker = Smoker(
                 objJson.getString("name"),
                 objJson.getInt("cigsPerDay"),
                 objJson.getInt("packPrice")
             )
-            if (!objJson.getString("motivation").isNullOrEmpty()){
-                smoker.motivation = objJson.getString("motivation")
+            try {
+                if (!objJson.getString("motivation").isNullOrEmpty()) {
+                    smoker.motivation = objJson.getString("motivation")
+                }
+            } catch (_:JSONException){
+                smoker.motivation = null
             }
         }
     }

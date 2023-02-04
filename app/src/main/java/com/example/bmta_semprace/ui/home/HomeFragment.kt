@@ -52,7 +52,7 @@ class HomeFragment : Fragment() {
             binding.txtMinutes.text = elapsedMinutes.toString()
 
             smoker.updateElapsedTime(it)
-            binding.txtMoneySaved.text = smoker.moneySaved.toString()
+            binding.txtMoneySaved.text = "${smoker.moneySaved} Kč"
             binding.txtCigarettes.text = smoker.cigsNotSmoked.toString()
             binding.txtPacks.text = smoker.packs.toString()
         }
@@ -68,7 +68,9 @@ class HomeFragment : Fragment() {
             showSettingMotivationDialog()
         }
 
-        binding.txtMotivation.text = smoker.motivation
+        if (!smoker.motivation.isNullOrEmpty()) {
+            binding.txtMotivation.text = smoker.motivation
+        }
 
         return root
     }
@@ -115,7 +117,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun writeSmokerDataJson(smoker: Smoker, context: Context) {
-        var jsonObject =  JSONObject()
+        var jsonObject = JSONObject()
         jsonObject.put("name", smoker.name)
         jsonObject.put("packPrice", smoker.packPrice)
         jsonObject.put("cigsPerDay", smoker.cigsPerDay)
