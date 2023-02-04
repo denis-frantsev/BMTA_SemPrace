@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bmta_semprace.databinding.FragmentHomeBinding
+import com.example.bmta_semprace.viewModels.SmokingTimerViewModel
 import java.util.concurrent.TimeUnit
 
 class HomeFragment : Fragment() {

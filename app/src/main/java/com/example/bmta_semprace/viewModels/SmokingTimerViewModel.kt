@@ -1,19 +1,22 @@
-package com.example.bmta_semprace.ui.home
+package com.example.bmta_semprace.viewModels
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import com.example.bmta_semprace.models.Relapse
-import com.example.bmta_semprace.models.SmokingTimerModel
+import com.example.bmta_semprace.models.SmokingTimer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
-import java.util.*
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.Date
 
 class SmokingTimerViewModel(application: Application) : AndroidViewModel(application) {
     private val sharedPref = application.getSharedPreferences("smoking_timer", Context.MODE_PRIVATE)
     private val editor = sharedPref.edit()
-    private val smokingTimerModel = SmokingTimerModel(sharedPref.getLong("start_time", 0))
+    private val smokingTimerModel = SmokingTimer(sharedPref.getLong("start_time", 0))
 
     fun startTimer() {
         smokingTimerModel.start(System.currentTimeMillis())
@@ -28,8 +31,10 @@ class SmokingTimerViewModel(application: Application) : AndroidViewModel(applica
 
     fun getElapsedTime() = smokingTimerModel.elapsedTime
 
-    private fun writeRelapseToFile(relapseReason:String ,fileName: String) {
-        var relapse = Relapse(Date(), relapseReason)
+    @SuppressLint("NewApi")
+    private fun writeRelapseToFile(relapseReason:String, fileName: String) {
+        val localDateTime = LocalDateTime.now()
+        var relapse = Relapse(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()), relapseReason)
 
         val relapses = mutableListOf<Relapse>()
 

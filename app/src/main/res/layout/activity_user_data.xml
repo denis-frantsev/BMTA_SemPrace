@@ -33,7 +33,6 @@
         android:hint="@string/your_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

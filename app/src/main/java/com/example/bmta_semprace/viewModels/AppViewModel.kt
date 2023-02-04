@@ -1,11 +1,11 @@
-package com.example.bmta_semprace.controllers
+package com.example.bmta_semprace.viewModels
 
 import android.util.Log
 import com.example.bmta_semprace.models.Smoker
 import org.json.JSONException
 import org.json.JSONObject
 
-class AppController(jsonString: String) {
+class AppViewModel(jsonString: String) {
     lateinit var smoker: Smoker
 
     init {

@@ -2,7 +2,7 @@
     <string name="app_name">BMTA_SemPrace</string>
     <string name="title_home">Home</string>
     <string name="title_relapses">Relapses</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
     <string name="daysCount">0</string>
     <string name="hoursCount">0</string>
     <string name="minutesCount">0</string>
@@ -20,4 +20,5 @@
     <string name="your_name">Your name</string>
     <string name="relapse">Relapse</string>
     <string name="refresh">Refresh</string>
+    <string name="txt_relapse">You relapsed 0 times</string>
 </resources>

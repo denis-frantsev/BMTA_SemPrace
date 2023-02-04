@@ -1,15 +1,11 @@
-package com.example.bmta_semprace.ui.dashboard
+package com.example.bmta_semprace.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.bmta_semprace.models.Relapse
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import kotlinx.coroutines.*
-import org.json.JSONException
 import java.io.File
 
 class RelapsesViewModel(application: Application) : AndroidViewModel(application) {

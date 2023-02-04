@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import java.util.*
 
-class SmokingTimerModel(private var startTime: Long) {
+class SmokingTimer(private var startTime: Long) {
     private var endTime: Long = 0
     val elapsedTime = MutableLiveData<Long>()
     private val timer:Timer = Timer()

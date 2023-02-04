@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.RelapsesFragment">
+    tools:context=".ui.relapses.RelapsesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/relapse_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="573dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:clipChildren="true"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +24,27 @@
         android:layout_height="53dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="76dp"
+        android:backgroundTint="#25A244"
         android:text="@string/refresh"
+        android:textColor="@color/white"
+        app:cornerRadius="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/txtRelapse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="14dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/txt_relapse"
+        android:textColor="#25A244"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/relapse_recycler_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

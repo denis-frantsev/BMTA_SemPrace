@@ -3,14 +3,13 @@
     <string name="app_name">BMTA_SemPrace</string>
     <string name="title_home">Home</string>
     <string name="title_relapses">Relapses</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
     <string name="daysCount">0</string>
     <string name="hoursCount">0</string>
     <string name="minutesCount">0</string>
     <string name="days">Days</string>
     <string name="hours">Hours</string>
     <string name="minutes">Minutes</string>
-    <string name="i_smoked">I smoked</string>
     <string name="enter_your_name">Enter your name</string>
     <string name="enter_how_many_cigs_you_smoke_per_day">Enter how many cigs you smoke per day</string>
     <string name="enter_the_price_of_one_cig_pack_in_k">Enter the price of one cig pack, in Kč</string>
@@ -21,4 +20,5 @@
     <string name="your_name">Your name</string>
     <string name="relapse">Relapse</string>
     <string name="refresh">Refresh</string>
+    <string name="txt_relapse">You relapsed 0 times</string>
 </resources>

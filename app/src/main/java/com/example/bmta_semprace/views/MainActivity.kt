@@ -9,7 +9,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bmta_semprace.R
-import com.example.bmta_semprace.controllers.AppController
+import com.example.bmta_semprace.viewModels.AppViewModel
 import com.example.bmta_semprace.databinding.ActivityMainBinding
 import com.example.bmta_semprace.models.Smoker
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,13 +20,13 @@ import java.io.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var controller: AppController
+    lateinit var controller: AppViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val data = readDataJson(this)
-        controller = AppController(data)
+        controller = AppViewModel(data)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_relapses, R.id.navigation_notifications
+                R.id.navigation_home, R.id.navigation_relapses, R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
