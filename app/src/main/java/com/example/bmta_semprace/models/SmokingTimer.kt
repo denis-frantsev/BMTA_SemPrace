@@ -18,7 +18,7 @@ class SmokingTimer(private var startTime: Long) {
         if(startTime == 0L){
             start(System.currentTimeMillis())
         }
-        timer?.scheduleAtFixedRate(object : TimerTask() {
+        timer.scheduleAtFixedRate(object : TimerTask() {
             override fun run() {
                 elapsedTime.postValue(System.currentTimeMillis() - startTime)
             }

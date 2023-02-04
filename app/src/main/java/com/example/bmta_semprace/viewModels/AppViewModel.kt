@@ -6,20 +6,23 @@ import org.json.JSONException
 import org.json.JSONObject
 
 class AppViewModel(jsonString: String) {
-    lateinit var smoker: Smoker
+    var smoker: Smoker = Smoker("", 0, 0)
 
     init {
-        var objJson = parseJsonObject(jsonString, "smoker")
+        var objJson = parseJsonObject(jsonString)
         if (objJson != null) {
             smoker = Smoker(
                 objJson.getString("name"),
                 objJson.getInt("cigsPerDay"),
                 objJson.getInt("packPrice")
             )
+            if (!objJson.getString("motivation").isNullOrEmpty()){
+                smoker.motivation = objJson.getString("motivation")
+            }
         }
     }
 
-    private fun parseJsonObject(dataJson: String, item: String): JSONObject? {
+    private fun parseJsonObject(dataJson: String): JSONObject? {
         try {
             return JSONObject(dataJson)
         } catch (ex: JSONException) {

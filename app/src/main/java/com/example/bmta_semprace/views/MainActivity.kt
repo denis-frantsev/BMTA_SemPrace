@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 val smoker = controller.smoker
                 smoker.name = data.getString("name")!!
                 smoker.cigsPerDay = Integer.parseInt(data.getString("cigsPerDay")!!)
-                smoker.packPrice = Integer.parseInt(data.getString("packPrice"))
+                smoker.packPrice = Integer.parseInt(data.getString("packPrice")!!)
                 writeSmokerDataJson(smoker, this)
             }
         }
@@ -62,6 +62,9 @@ class MainActivity : AppCompatActivity() {
         var string: String? = ""
         val stringBuilder = StringBuilder()
         val file = File(context.filesDir, "data.json")
+        if (!file.exists()){
+            file.createNewFile()
+        }
         val fileReader = FileReader(file)
         val reader = BufferedReader(fileReader)
         while (true) {
@@ -78,10 +81,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun writeSmokerDataJson(smoker: Smoker, context: Context) {
-        var jsonObject =  JSONObject();
-        jsonObject.put("name", smoker.name);
-        jsonObject.put("packPrice", smoker.packPrice);
-        jsonObject.put("cigsPerDay", smoker.cigsPerDay);
+        var jsonObject =  JSONObject()
+        jsonObject.put("name", smoker.name)
+        jsonObject.put("packPrice", smoker.packPrice)
+        jsonObject.put("cigsPerDay", smoker.cigsPerDay)
+        jsonObject.put("motivation", smoker.motivation)
 
         val userString: String = jsonObject.toString()
         val file = File(context.filesDir, "data.json")

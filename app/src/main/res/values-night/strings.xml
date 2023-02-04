@@ -21,4 +21,16 @@
     <string name="relapse">Relapse</string>
     <string name="refresh">Refresh</string>
     <string name="txt_relapse">You relapsed 0 times</string>
+    <string name="money_saved">Money saved</string>
+    <string name="cigarettes">Cigarettes</string>
+    <string name="packs">Packs</string>
+    <string name="zero">0</string>
+    <string name="motivation">Remember why you quit</string>
+    <string name="saved_example">50 Kč</string>
+    <string name="set_motivation">Set motivation</string>
+    <string name="you_used_to_smoke">You used to smoke</string>
+    <string name="number">7</string>
+    <string name="cigs_per_day">cigs per day</string>
+    <string name="with_average_pack_price">With average pack price</string>
+    <string name="delimeter">___________________</string>
 </resources>

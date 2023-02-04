@@ -1,6 +1,5 @@
 package com.example.bmta_semprace.viewModels
 
-import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.AndroidViewModel
@@ -9,8 +8,6 @@ import com.example.bmta_semprace.models.SmokingTimer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
-import java.time.LocalDateTime
-import java.time.ZoneId
 import java.util.Date
 
 class SmokingTimerViewModel(application: Application) : AndroidViewModel(application) {
@@ -25,20 +22,18 @@ class SmokingTimerViewModel(application: Application) : AndroidViewModel(applica
 
     fun stopTimer(relapseReason:String) {
         smokingTimerModel.stop()
-        writeRelapseToFile(relapseReason,"relapse_history.json")
+        writeRelapseToFile(relapseReason)
         editor.putLong("start_time", 0).apply()
     }
 
     fun getElapsedTime() = smokingTimerModel.elapsedTime
 
-    @SuppressLint("NewApi")
-    private fun writeRelapseToFile(relapseReason:String, fileName: String) {
-        val localDateTime = LocalDateTime.now()
-        var relapse = Relapse(Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant()), relapseReason)
+    private fun writeRelapseToFile(relapseReason:String) {
+        var relapse = Relapse(Date(), relapseReason)
 
         val relapses = mutableListOf<Relapse>()
 
-        val file = File(getApplication<Application>().filesDir, fileName)
+        val file = File(getApplication<Application>().filesDir, "relapse_history.json")
         if (file.exists()) {
             val json = file.readText()
             if (!json.isNullOrEmpty())
@@ -49,4 +44,3 @@ class SmokingTimerViewModel(application: Application) : AndroidViewModel(applica
         file.writeText(output)
     }
 }
-
