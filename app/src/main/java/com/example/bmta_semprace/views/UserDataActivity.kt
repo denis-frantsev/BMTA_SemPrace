@@ -1,5 +1,6 @@
 package com.example.bmta_semprace.views
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -25,11 +26,17 @@ class UserDataActivity : AppCompatActivity() {
             } else if (packPrice == "0" || cigsPerDay.isEmpty()) {
                 Toast.makeText(this, "Fill in the price field, please.", Toast.LENGTH_LONG).show()
             } else {
-                var newAct = Intent(this, MainActivity::class.java)
+                var newAct = Intent()
+//                var newAct = parentActivityIntent
+//                if (newAct != null) {
+//
+//                }
                 newAct.putExtra("name", name)
                 newAct.putExtra("cigsPerDay",cigsPerDay)
                 newAct.putExtra("packPrice",packPrice)
-                startActivity(newAct)
+//                startActivity(newAct)
+                setResult(Activity.RESULT_OK, newAct)
+                finish()
             }
         }
     }

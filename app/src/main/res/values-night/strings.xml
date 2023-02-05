@@ -33,4 +33,5 @@
     <string name="cigs_per_day">cigs per day</string>
     <string name="with_average_pack_price">With average pack price</string>
     <string name="delimeter">___________________</string>
+    <string name="edit">Edit</string>
 </resources>
