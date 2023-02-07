@@ -20,7 +20,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     }
     val smoker: LiveData<Smoker> = _smoker
 
-    fun readUserJson(): Smoker {
+    private fun readUserJson(): Smoker {
         val file = File(getApplication<Application>().filesDir, "data.json")
         var smoker: Smoker? = null
         if (file.exists()) {

@@ -9,7 +9,7 @@ class AppViewModel(jsonString: String) {
     var smoker: Smoker = Smoker("", 0, 0)
 
     init {
-        var objJson = parseJsonObject(jsonString)
+        val objJson = parseJsonObject(jsonString)
         if (objJson != null) {
 
             smoker = Smoker(

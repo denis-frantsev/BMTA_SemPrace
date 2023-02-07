@@ -1,8 +1,10 @@
 package com.example.bmta_semprace.views
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -44,10 +46,9 @@ class MainActivity : AppCompatActivity() {
         ifUserAlreadyExists()
     }
 
-    private fun ifUserAlreadyExists() {
-        if (controller.smoker.name.isNullOrEmpty()) {
-            startActivity(Intent(this, UserDataActivity::class.java))
-            var data: Bundle? = intent.extras;
+    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data: Bundle? = result.data?.extras
             if (data != null) {
                 val smoker = controller.smoker
                 smoker.name = data.getString("name")!!
@@ -57,6 +58,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun ifUserAlreadyExists() {
+        if (controller.smoker.name.isNullOrEmpty()) {
+            val intent = Intent(this, UserDataActivity::class.java)
+            resultLauncher.launch(intent)
+        }
+    }
+
+
 
     private fun readDataJson(context: Context): String {
         var string: String? = ""

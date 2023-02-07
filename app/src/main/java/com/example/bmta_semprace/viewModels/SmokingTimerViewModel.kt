@@ -29,14 +29,14 @@ class SmokingTimerViewModel(application: Application) : AndroidViewModel(applica
     fun getElapsedTime() = smokingTimerModel.elapsedTime
 
     private fun writeRelapseToFile(relapseReason:String) {
-        var relapse = Relapse(Date(), relapseReason)
+        val relapse = Relapse(Date(), relapseReason)
 
         val relapses = mutableListOf<Relapse>()
 
         val file = File(getApplication<Application>().filesDir, "relapse_history.json")
         if (file.exists()) {
             val json = file.readText()
-            if (!json.isNullOrEmpty())
+            if (json.isNotEmpty())
                 relapses.addAll(Gson().fromJson(json, object : TypeToken<List<Relapse>>() {}.type))
         }
         relapses.add(relapse)

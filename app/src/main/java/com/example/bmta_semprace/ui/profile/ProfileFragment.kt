@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.bmta_semprace.databinding.FragmentProfileBinding
@@ -17,7 +19,9 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var profileViewModel:ProfileViewModel
+    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +29,7 @@ class ProfileFragment : Fragment() {
     ): View {
         val profileViewModel =
             ViewModelProvider(this)[ProfileViewModel::class.java]
+        resultLauncher = activityResultLauncherInitializer()
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -37,30 +42,31 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnEdit.setOnClickListener {
-            startActivityForResult(
-                Intent(requireContext(), UserDataActivity::class.java),
-                Activity.RESULT_OK,
-                null
-            )
+            val intent = Intent(requireContext(), UserDataActivity::class.java)
+            resultLauncher.launch(intent)
+
         }
 
         return root
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            var data: Bundle? = requireActivity().intent.extras;
-            if (data != null) {
-                val smoker = profileViewModel.smoker.value
-                if (smoker != null) {
-                    smoker.name = data.getString("name")!!
-                    smoker.cigsPerDay = Integer.parseInt(data.getString("cigsPerDay")!!)
-                    smoker.packPrice = Integer.parseInt(data.getString("packPrice")!!)
-                    profileViewModel.updateSmokerDataJson(smoker, requireContext())
+    private fun activityResultLauncherInitializer() =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Bundle? = result.data?.extras
+                if (data != null) {
+                    profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+                    val smoker = profileViewModel.smoker.value
+                    if (smoker != null) {
+                        smoker.name = data.getString("name")!!
+                        smoker.cigsPerDay = Integer.parseInt(data.getString("cigsPerDay")!!)
+                        smoker.packPrice = Integer.parseInt(data.getString("packPrice")!!)
+                        profileViewModel.updateSmokerDataJson(smoker, requireContext())
+                    }
                 }
+            }
         }
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
